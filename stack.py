@@ -17,8 +17,9 @@ class Stack:
 
     def pop(self):
         if self.length():
+            last_elem = self.list[-1]
             self.list = self.list[0:len(self.list)-1]
-            return
+            return last_elem
         else:
             print("Nothing to pop!")
 

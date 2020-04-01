@@ -1,0 +1,4 @@
+{
+    "python.pythonPath": "/usr/local/Caskroom/miniconda/base/envs/torchenv/bin/python",
+    "python.linting.enabled": false
+}
