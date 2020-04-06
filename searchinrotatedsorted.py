@@ -1,3 +1,5 @@
+# Search in rotated sorted - recursive
+
 def search(a,left,right,x):
     mid=(left+right)//2
     if a[mid]==x:
@@ -25,8 +27,33 @@ def search(a,left,right,x):
             else:
                 return result
 
+
+# Search in rotated sorted array - iterative 
+
+def _search(arr, x):
+    low=0
+    high=len(arr)-1
+
+    while low<=high:
+        mid=(low+high)//2
+        if arr[mid]==x:
+            return mid
+        elif arr[mid]<=arr[high]:
+            if x>arr[mid] and x<=arr[high]:
+                low=mid+1
+            else:
+                high=mid-1
+        elif arr[low]<=arr[mid]:
+            if x>=arr[low] and x<arr[mid]:
+                high=mid-1
+            else:
+                low=mid+1
+    return -1
+
+
 a=[10,15,20,0,5]
 a=[50,5,20,30,40]
 a=[15,16,19,20,25,1,3,4,5,7,10,14]
-x=5
+x=15
 print(search(a,0,11,x))
+print(_search(a,x))
