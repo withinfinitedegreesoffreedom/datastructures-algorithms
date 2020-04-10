@@ -1,3 +1,6 @@
+# Implement a binary search tree with insert and find methods 
+
+import unittest
 class Node:
     def __init__(self, value=None):
         self.value = value
@@ -45,46 +48,6 @@ class BST:
         elif data == cur_node.value:
             return True
 
-    def is_BST(self, cur_node, value):
-        node = cur_node.left
-        if node:
-            if value > node.value:
-                return self.is_BST(node, node.value)
-            else:
-                return False
-
-        node = cur_node.right
-        if node:
-            if node.value > value:
-                return self.is_BST(node, node.value)
-            else:
-                return False
-
-
-    def _is_BST(self, cur_node, data):
-        if cur_node.left:
-            if data > cur_node.left.value:
-                return self._is_BST(cur_node.left, cur_node.left.value)
-            else:
-                return False
-        if cur_node.right:
-            if data < cur_node.right.value:
-                return self._is_BST(cur_node.right, cur_node.right.value)
-            else:
-                return False
-
-
-    def check_BST_property(self):
-        if self.root:
-            #is_BST = self.is_BST(self.root, self.root.value)
-            _is_BST = self._is_BST(self.root, self.root.value)
-            #print(is_BST)
-            #print(_is_BST)
-            if _is_BST is None:
-                return True
-            return False
-        return True
-
     def inorder_traversal(self, node, traversal):
         if node:
             traversal = self.inorder_traversal(node.left, traversal)
@@ -93,56 +56,27 @@ class BST:
 
         return traversal
 
-    def check_BST(self, node, traversal, valid):
-        if node:
-            traversal = self.check_BST(node.left, traversal, valid)
-            if len(traversal) > 0:
-                if traversal[-1] > node.value:
-                    valid = False
-                else:
-                    traversal.append(node.value)
-            else:
-                traversal.append(node.value)
-            traversal = self.check_BST(node.right, traversal, valid)
-        if valid:
-            return traversal
-        else:
-            return valid
 
+class Test(unittest.TestCase):
+    def test_bst_find_1(self):
+        # insert will always insert the nodes such that BST property is obeyed
+        bst = BST()
+        bst.insert(4)
+        bst.insert(2)
+        bst.insert(8)
+        bst.insert(5)
+        bst.insert(10)
+        self.assertTrue(bst.find(2))
 
-bst = BST()
-bst.insert(4)
-bst.insert(2)
-bst.insert(8)
-bst.insert(5)
-bst.insert(10)
+    def test_bst_find_2(self):
+        bst = BST()
+        bst.insert(4)
+        bst.insert(2)
+        bst.insert(8)
+        bst.insert(5)
+        bst.insert(10)
+        self.assertFalse(bst.find(11))
+    
 
-'''# create a non-bst tree
-bst=BST()
-bst.root = Node(8)
-bst.root.left = Node(3)
-bst.root.right = Node(20)
-bst.root.left.left = Node(1)
-bst.root.left.right = Node(15)
-
-bst = BST()
-bst.root = Node(1)
-bst.root.left = Node(2)
-bst.root.right = Node(3)
-
-tree = BST()
-tree.root = Node(12)
-tree.root.left = Node(3)
-tree.root.right = Node(14)
-tree.root.left.left = Node(1)
-tree.root.left.right = Node(13)
-tree.root.right.left = Node(11)
-tree.root.right.right = Node(15)'''
-print(bst.inorder_traversal(bst.root, ""))
-
-#print(tree.find(100))
-try:
-    if bst.check_BST(bst.root, [], valid=True) == False:
-        print(False)
-except: 
-    print(True)
+if __name__=="__main__":
+    unittest.main()
