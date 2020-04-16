@@ -27,6 +27,7 @@ def create_minimal_bst(array, start, end):
     return treenode
 
 # test code 
-array = [1,2,3,4,5,6,7] # should be sorted in ascending order
+#array = [1,2,3,4,5,6,7] # should be sorted in ascending order
+array =  [-10,-3,0,5,9]
 treenode = _create_minimal_bst(array)
 print(treenode)

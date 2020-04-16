@@ -23,6 +23,36 @@ def search_in_rotated_array(array,x):
                 low = mid+1
     return -1
 
+def search_in_rotated_sorted_array_leetcode(array, x):
+    if array is None:
+        return -1
+
+    if len(array)==1:
+        if array[0]==x:
+            return 0
+        else:
+            return -1
+
+    low=0
+    high=len(array)-1
+
+    while low<=high:
+        mid=(low+high)//2
+        if array[mid]==x:
+            return mid
+        elif array[mid]<array[high]:
+            if x>array[mid] and x<=array[high]:
+                low=mid+1
+            else:
+                high=mid-1
+        else:
+            if x>=array[low] and x<array[mid]:
+                high=mid-1
+            else:
+                low=mid+1
+    return -1
+
+
 def search_in_rotated_array_recursive(array, low, high, x):
     mid = (low+high)//2
     
@@ -66,6 +96,8 @@ class Test(unittest.TestCase):
         self.assertEqual(search_in_rotated_array_recursive(self.array, 0, len(self.array)-1, 1),5)
         self.assertEqual(search_in_rotated_array_recursive(self.array, 0, len(self.array)-1, 10),9)
         self.assertEqual(search_in_rotated_array_recursive(self.array1, 0, len(self.array)-1, 5),8)
+        self.assertEqual(search_in_rotated_array_recursive([3,4,5,6,1,2],0, 5, 2),5) # leetcode
+        self.assertEqual(search_in_rotated_array([4,5,6,7,0,1,2], 0),4) #leetcode
 
 if __name__=="__main__":
     unittest.main()

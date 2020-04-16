@@ -15,8 +15,8 @@ def search_first_index(arr,x):
             high=mid-1
     return result
 
-arr=[10,10,10,10,10,10,15,20,35]
-x=35
+arr=[5,7,7,8,8,10]
+x=8
 print(search_first_index(arr,x))
 
 

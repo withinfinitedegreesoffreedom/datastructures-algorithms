@@ -4,10 +4,10 @@ def merge(a,b,c):
     nc = len(c)
 
     if na == 0:
-        return nb
+        return b
 
     if nb == 0:
-        return na
+        return a
 
     i = 0
     j = 0

@@ -63,10 +63,9 @@ def intersection(list1, list2):
         large, small = make_same_length(list1, list2)
         while large:
             if large == small:
-                return large.value
-            else:
-                large = large.next
-                small = small.next
+                return large.value           
+            large = large.next
+            small = small.next
     else:
         return None
 

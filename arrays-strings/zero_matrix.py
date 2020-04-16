@@ -43,7 +43,9 @@ class Test(unittest.TestCase):
 
     def test_zero_matrix(self):
         matrix = zero_matrix(self.matrix)
+        m = zero_matrix([[0,1,2,0],[3,4,5,2],[1,3,1,5]])
         self.assertEqual(matrix, [[0,0,0,0,0,0],[0,7,8,9,10,11],[0,13,14,15,16,17],[0,19,20,21,22,23],[0,25,26,27,28,29],[0,31,32,33,34,35]])
+        self.assertEqual(m, [[0,0,2,0],[0,0,0,0],[1,0,1,5]])
 
 if __name__=="__main__":
     unittest.main()
